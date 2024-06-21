@@ -1,36 +1,58 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+# Stress-Survey
 
-## Getting Started
+## 프로젝트 소개
 
-First, run the development server:
+스트레스 자가진단 설문지
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
+### 요구사항
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+- Node.js 18.17
+- NPM 9.6.7
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+## 기능 소개
 
-This project uses [`next/font`](https://nextjs.org/docs/basic-features/font-optimization) to automatically optimize and load Inter, a custom Google Font.
+## 할 일
 
-## Learn More
+### 기본 요구사항
 
-To learn more about Next.js, take a look at the following resources:
+- [ ]문제 만들기
+  - [X]주제 정하기
+  - [ ]5지선다 문제 (1~5점으로 환산할 수 있어야 함)
+  - [ ]주관식 문제 (1~10 점수 입력)
+  - [ ]5지선다 다중 선택 (문제의 답은 선택한 값의 합)
+- [ ]멀티 폼 구현
+  - [ ]다음, 이전 버튼을 구현한다.
+  - [ ]Application storage에 사용자와 점수를 저장한다.
+- [ ]사용자 정보 입력 컴포넌트 구현
+  - [ ]팀과 이름을 입력받는다.
+- [ ]5지선다 문제 컴포넌트 구현
+  - [ ]보기 중 하나만 선택할 수 있다.
+  - [ ]보기 중복을 고려해 해시값을 붙인다.
+- [ ]주관식 문제 컴포넌트 구현
+  - [ ]1~10 사이의 숫자만 입력할 수 있다.
+  - [ ]복사 & 붙여넣기를 고려한다.
+- [ ]5지선다 다중 선택 컴포넌트 구현
+  - [ ]보기 중 여러개 선택할 수 있다.
+  - [ ]선택한 값의 합이 문제의 답이 된다.
+  - [ ]보기 중복을 고려해 해시값을 붙인다.
+- [ ]대시보드 페이지
+  - [ ]사용자가 입력한 데이터를 가져온다.
+  - [ ]팀별 총합, 평균, 표준편차 등 차트 구현
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+### 추가 요구사항
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
+- [ ]반응형 디자인 적용
+- [ ]사용자 편의성을 고려한 디자인 개선 혹은 기능 추가
+- [ ]대시보드 페이지 진입 인증 처리
+- [ ]성능 최적화 고민하기
 
-## Deploy on Vercel
+## 커밋 컨벤션
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+| Type     | 설명                                                                                                  |
+| -------- | ----------------------------------------------------------------------------------------------------- |
+| Feat     | 새로운 기능 추가                                                                                      |
+| Fix      | 버그 수정                                                                                             |
+| Refactor | 코드 리팩토링, 파일 혹은 폴더명을 수정하거나 옮기는 작업만인 경우, 파일을 삭제하는 작업만 수행한 경우 |
+| Style    | CSS 및 레이아웃 작업수정                                                                              |
+| Docs     | 문서 수정                                                                                             |
+| Chore    | 설정 관련                                                                                             |
