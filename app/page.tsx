@@ -5,6 +5,7 @@ import { useSetRecoilState } from 'recoil';
 import { userState } from '@/store/userState';
 import { isNotEmpty } from '@/util/validation';
 import { useRouter } from 'next/navigation';
+import Input from '@/components/input';
 
 export default function Home() {
   const [enteredValues, setEnteredValues] = useState({
@@ -40,29 +41,23 @@ export default function Home() {
       </header>
 
       <form className="mt-10" onSubmit={handleSubmit}>
-        <div className="mb-2">
-          <label htmlFor="team"></label>
-          <input
-            type="text"
-            name="team"
-            id="team"
-            placeholder="팀을 입력하세요."
-            value={enteredValues.team}
-            onChange={handleInputChange}
-          />
-        </div>
+        <Input
+          label=""
+          id="team"
+          name="team"
+          placeholder="팀을 입력하세요."
+          value={enteredValues.team}
+          onChange={handleInputChange}
+        />
 
-        <div>
-          <label htmlFor="username"></label>
-          <input
-            type="text"
-            name="username"
-            id="username"
-            placeholder="이름을 입력하세요."
-            value={enteredValues.username}
-            onChange={handleInputChange}
-          />
-        </div>
+        <Input
+          label=""
+          id="username"
+          name="username"
+          placeholder="이름을 입력하세요."
+          value={enteredValues.username}
+          onChange={handleInputChange}
+        />
 
         <div className="mt-8 flex w-full justify-center">
           <button disabled={!isValid}>설문 시작하기</button>
