@@ -9,7 +9,7 @@ interface Props {
 
 export default function Input({ label, id, ...props }: Props) {
   return (
-    <div className="mb-2">
+    <div className="mb-2 px-4">
       <label htmlFor={id}>{label}</label>
       <input type="text" id={id} {...props} />
     </div>

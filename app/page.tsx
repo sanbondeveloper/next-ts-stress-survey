@@ -32,7 +32,7 @@ export default function Home() {
 
   return (
     <main>
-      <header className="flex flex-col items-center">
+      <header className="flex flex-col items-center px-4">
         <h1 className="text-4xl font-bold text-white">스트레스 자가진단</h1>
         <p>
           최근 1개월 동안 당신이 느끼고 생각한 것에 대한 것입니다. 각 문항에 해당하는 내용을 얼마나 자주 느꼈는지 표기해
@@ -59,7 +59,7 @@ export default function Home() {
           onChange={handleInputChange}
         />
 
-        <div className="mt-8 flex w-full justify-center">
+        <div className="mt-8 flex w-full justify-center px-4">
           <button disabled={!isValid}>설문 시작하기</button>
         </div>
       </form>
