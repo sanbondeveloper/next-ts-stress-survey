@@ -1,10 +1,9 @@
-'use client';
+import { fetchQuestions } from '@/util/http';
 
-import { userState } from '@/store/userState';
-import { useRecoilValue } from 'recoil';
+export default async function SurveyPage() {
+  const questions = await fetchQuestions();
 
-export default function SurveyPage() {
-  const user = useRecoilValue(userState);
+  console.log(questions);
 
   return <div>SurveyPage</div>;
 }
