@@ -1,7 +1,7 @@
 type QuestionType = 'RADIO' | 'CHECKBOX' | 'INPUT';
 
 interface Option {
-  store: number;
+  score: number;
   label: string;
 }
 

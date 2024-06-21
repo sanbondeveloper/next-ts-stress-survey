@@ -16,7 +16,7 @@ body {
   background: #ace1af;
 }
 
-input {
+input[type='text'] {
   display: block;
   outline: none;
   padding: 10px;
@@ -36,4 +36,36 @@ button {
 
 button:disabled {
   background-color: #ebebe4;
+}
+
+input[type='radio'] {
+  position: absolute;
+  opacity: 0;
+  width: 0;
+  height: 0;
+}
+
+.radio-custom {
+  display: inline-block;
+  width: 25px;
+  height: 25px;
+  background-color: white;
+  border: 2px solid green;
+  border-radius: 50%;
+  position: relative;
+  cursor: pointer;
+  margin-right: 10px;
+}
+
+input[type='radio']:checked + .radio-custom::after {
+  content: '';
+  display: block;
+  width: 15px;
+  height: 15px;
+  background-color: green;
+  border-radius: 50%;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
 }

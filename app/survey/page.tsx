@@ -4,5 +4,9 @@ import SurveyForm from '@/components/survey/survey-form';
 export default async function SurveyPage() {
   const questions = await fetchQuestions();
 
-  return <SurveyForm questions={questions} />;
+  return (
+    <main>
+      <SurveyForm questions={questions} />
+    </main>
+  );
 }
