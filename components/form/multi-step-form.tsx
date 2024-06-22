@@ -7,7 +7,7 @@ import { useRecoilValue } from 'recoil';
 interface Props<T> {
   items: T[];
   keyFn: (item: T) => string;
-  validationFn: (item: T, value: number[] | undefined) => boolean;
+  validationFn: (item: T, value: string | string[] | undefined) => boolean;
   children: (item: T) => React.ReactNode;
 }
 
