@@ -1,8 +1,9 @@
 'use client';
 
 import { useEffect } from 'react';
-import { useRecoilValue } from 'recoil';
+import { useRecoilState } from 'recoil';
 import { useRouter } from 'next/navigation';
+import { useDialogStore } from '@/store/dialogState';
 import { userState } from '@/store/userState';
 import { formState } from '@/store/formState';
 import { Question } from '@/types/question';
@@ -16,9 +17,10 @@ interface Props {
 }
 
 export default function SurveyForm({ questions }: Props) {
-  const user = useRecoilValue(userState);
-  const formValues = useRecoilValue(formState);
+  const [user, setUser] = useRecoilState(userState);
+  const [formValues, setFormValues] = useRecoilState(formState);
   const router = useRouter();
+  const { alert } = useDialogStore();
 
   useEffect(() => {
     if (!user) {
@@ -52,11 +54,22 @@ export default function SurveyForm({ questions }: Props) {
       const transaction = db.transaction(['survey'], 'readwrite');
 
       transaction.oncomplete = () => {
-        console.log('성공!');
+        alert({
+          title: '제출 완료',
+          description: '설문 내용을 성공적으로 제출했습니다.',
+          onClose: () => {
+            setUser(null);
+            setFormValues({});
+            router.replace('/');
+          },
+        });
       };
 
       transaction.onerror = () => {
-        console.log('실패!');
+        alert({
+          title: '제출 실패',
+          description: '예기치 못한 오류가 발생했습니다. 잠시 후 다시 시도해주세요',
+        });
       };
 
       const objStore = transaction.objectStore('survey');

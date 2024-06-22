@@ -1,7 +1,7 @@
 'use client';
 
-import UserForm from '@/components/user/user-form';
 import { useEffect } from 'react';
+import UserForm from '@/components/user/user-form';
 
 export default function Home() {
   useEffect(() => {
