@@ -8,10 +8,10 @@ interface Props {
 
 export default function RadioGroup({ question }: Props) {
   const { id, title } = question;
-  const setFormState = useSetRecoilState(formState);
+  const setFormValues = useSetRecoilState(formState);
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    setFormState((prev) => ({ ...prev, [`#${id}`]: [+e.target.value] }));
+    setFormValues((prev) => ({ ...prev, [`#${id}`]: e.target.value }));
   };
 
   return (

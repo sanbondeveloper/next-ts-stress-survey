@@ -8,18 +8,20 @@ interface Props {
 
 export default function CheckboxGroup({ question }: Props) {
   const { id, title } = question;
-  const [formValue, setFormValue] = useRecoilState(formState);
+  const [formValues, setFormValues] = useRecoilState(formState);
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    const prevSelected = formValue[`#${id}`] || [];
     const { value, checked } = e.target;
+    const formValue = (formValues[`#${id}`] as string[]) || [];
+    let newFormValue;
 
     if (checked) {
-      setFormValue((prev) => ({ ...prev, [`#${id}`]: [...prevSelected, +value] }));
+      newFormValue = [...formValue, value];
     } else {
-      const newSelected = prevSelected.filter((item) => item !== +value);
-      setFormValue((prev) => ({ ...prev, [`#${id}`]: newSelected }));
+      newFormValue = formValue.filter((item) => item !== value);
     }
+
+    setFormValues({ ...formValues, [`#${id}`]: newFormValue });
   };
 
   return (
