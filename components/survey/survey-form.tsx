@@ -4,6 +4,7 @@ import { Question } from '@/types/question';
 import MultiStepForm from '../form/multi-step-form';
 import RadioGroup from '../form/radio-group';
 import CheckboxGroup from '../form/checkbox-group';
+import SubjectiveInput from '../form/subjective-input';
 
 interface Props {
   questions: Question[];
@@ -25,7 +26,8 @@ export default function SurveyForm({ questions }: Props) {
         const { type } = item;
 
         if (type === 'RADIO') return <RadioGroup question={item} />;
-        else return <CheckboxGroup question={item} />;
+        else if (type === 'CHECKBOX') return <CheckboxGroup question={item} />;
+        else return <SubjectiveInput question={item} />;
       }}
     </MultiStepForm>
   );

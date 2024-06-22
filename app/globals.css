@@ -16,7 +16,8 @@ body {
   background: #ace1af;
 }
 
-input[type='text'] {
+input[type='text'],
+input[type='number'] {
   display: block;
   outline: none;
   padding: 10px;
