@@ -10,8 +10,8 @@ export default function RadioGroup({ question }: Props) {
   const { id, title } = question;
   const setFormState = useSetRecoilState(formState);
 
-  const handleChange = (score: number) => {
-    setFormState((prev) => ({ ...prev, [`#${id}`]: [score] }));
+  const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    setFormState((prev) => ({ ...prev, [`#${id}`]: [+e.target.value] }));
   };
 
   return (
@@ -20,8 +20,8 @@ export default function RadioGroup({ question }: Props) {
 
       {question?.options?.map(({ label, score }) => (
         <div className="mb-3 w-fit" key={score}>
-          <label htmlFor={label} className="flex items-center">
-            <input type="radio" id={label} name={`#${id}`} value={label} onChange={() => handleChange(score)} />
+          <label htmlFor={`${id}-${label}`} className="flex items-center">
+            <input type="radio" id={`${id}-${label}`} name={`#${id}`} value={score} onChange={handleChange} />
             <span className="radio-custom"></span> <span className="cursor-pointer">{label}</span>
           </label>
         </div>
