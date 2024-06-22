@@ -1,5 +1,9 @@
 'use client';
 
+import { useEffect } from 'react';
+import { useRecoilValue } from 'recoil';
+import { useRouter } from 'next/navigation';
+import { userState } from '@/store/userState';
 import { Question } from '@/types/question';
 import MultiStepForm from '../form/multi-step-form';
 import RadioGroup from '../form/radio-group';
@@ -11,6 +15,17 @@ interface Props {
 }
 
 export default function SurveyForm({ questions }: Props) {
+  const user = useRecoilValue(userState);
+  const router = useRouter();
+
+  useEffect(() => {
+    if (!user) {
+      router.replace('/');
+    }
+  }, [user, router]);
+
+  if (!user) return null;
+
   return (
     <MultiStepForm
       items={questions}
