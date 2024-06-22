@@ -1,68 +1,24 @@
 'use client';
 
-import { useState } from 'react';
-import { useSetRecoilState } from 'recoil';
-import { userState } from '@/store/userState';
-import { isNotEmpty } from '@/util/validation';
-import { useRouter } from 'next/navigation';
-import Input from '@/components/common/input';
+import UserForm from '@/components/user/user-form';
+import { useEffect } from 'react';
 
 export default function Home() {
-  const [enteredValues, setEnteredValues] = useState({
-    team: '',
-    username: '',
-  });
-  const setUser = useSetRecoilState(userState);
-  const router = useRouter();
+  useEffect(() => {
+    const indexedDB = window.indexedDB;
 
-  const isValid = isNotEmpty(enteredValues.team) && isNotEmpty(enteredValues.username);
+    if (!indexedDB) window.alert('해당 브라우저에서는 indexedDB를 지원하지 않습니다.');
+    else {
+      let db;
+      const request = indexedDB.open('appDB');
 
-  const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    setEnteredValues((prev) => ({ ...prev, [e.target.name]: e.target.value }));
-  };
+      request.onupgradeneeded = () => {
+        db = request.result;
+        db.createObjectStore('survey', { keyPath: 'id', autoIncrement: true });
+        // store.createIndex('by_team', 'team');
+      };
+    }
+  }, []);
 
-  const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
-    e.preventDefault();
-
-    if (!isValid) return;
-
-    setUser(enteredValues);
-    router.push('/survey');
-  };
-
-  return (
-    <main className="w-[1024px] min-w-0">
-      <form onSubmit={handleSubmit}>
-        <header className="mb-10 flex w-full flex-col items-center px-4">
-          <h1 className="text-4xl font-bold text-white">스트레스 자가진단</h1>
-          <p>
-            최근 1개월 동안 당신이 느끼고 생각한 것에 대한 것입니다. 각 문항에 해당하는 내용을 얼마나 자주 느꼈는지
-            표기해 주십시오.
-          </p>
-        </header>
-
-        <Input
-          label=""
-          id="team"
-          name="team"
-          placeholder="팀을 입력하세요."
-          value={enteredValues.team}
-          onChange={handleInputChange}
-        />
-
-        <Input
-          label=""
-          id="username"
-          name="username"
-          placeholder="이름을 입력하세요."
-          value={enteredValues.username}
-          onChange={handleInputChange}
-        />
-
-        <div className="mt-8 flex w-full justify-center px-4">
-          <button disabled={!isValid}>설문 시작하기</button>
-        </div>
-      </form>
-    </main>
-  );
+  return <UserForm />;
 }

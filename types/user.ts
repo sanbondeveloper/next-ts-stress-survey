@@ -1,4 +1,4 @@
 export interface User {
   team: string;
-  username: string;
+  name: string;
 }
