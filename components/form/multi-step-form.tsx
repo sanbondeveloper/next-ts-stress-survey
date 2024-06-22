@@ -37,7 +37,7 @@ export default function MultiStepForm<T>({ items, keyFn, validationFn, children 
   };
 
   return (
-    <form className="w-[800px] max-w-full px-4" onSubmit={handleSubmit}>
+    <form className="w-full px-2" onSubmit={handleSubmit}>
       <div className="w-full overflow-hidden">
         <div className="flex w-full" style={containerStyle}>
           {items.map((item) => (

@@ -5,7 +5,7 @@ export default async function SurveyPage() {
   const questions = await fetchQuestions();
 
   return (
-    <main>
+    <main className="w-[1024px] min-w-0">
       <SurveyForm questions={questions} />
     </main>
   );

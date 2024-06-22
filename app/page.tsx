@@ -31,8 +31,8 @@ export default function Home() {
   };
 
   return (
-    <main>
-      <form className="max-w-[1024px]" onSubmit={handleSubmit}>
+    <main className="w-[1024px] min-w-0">
+      <form onSubmit={handleSubmit}>
         <header className="mb-10 flex w-full flex-col items-center px-4">
           <h1 className="text-4xl font-bold text-white">스트레스 자가진단</h1>
           <p>
