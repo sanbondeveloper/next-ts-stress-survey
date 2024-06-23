@@ -14,6 +14,7 @@ export default function SubjectiveInput({ question }: Props) {
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     let { value } = e.target;
+    value = value.replace(/\D/g, '');
 
     if (value !== '' && value.replace(/0/g, '') === '') return;
     else if (value !== '' && Number(value) > 10) value = '10';
@@ -24,14 +25,7 @@ export default function SubjectiveInput({ question }: Props) {
   return (
     <>
       <div className="mb-7 text-xl font-bold">{title}</div>
-      <input
-        type="number"
-        placeholder="숫자를 입력하세요"
-        min={1}
-        max={10}
-        value={inputValue}
-        onChange={handleChange}
-      />
+      <input type="text" placeholder="숫자를 입력하세요" value={inputValue} onChange={handleChange} />
     </>
   );
 }
