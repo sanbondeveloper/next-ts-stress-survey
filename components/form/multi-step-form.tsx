@@ -45,9 +45,16 @@ export default function MultiStepForm<T>({ items, keyFn, validationFn, onSubmit,
         <button type="button" onClick={handlePrev} disabled={step === 0}>
           이전
         </button>
-        <button type={step !== items.length - 1 ? 'button' : 'submit'} onClick={handleNext} disabled={!isValid}>
-          {step !== items.length - 1 ? '다음' : '제출'}
-        </button>
+        {step !== items.length - 1 && (
+          <button type="button" onClick={handleNext} disabled={!isValid}>
+            다음
+          </button>
+        )}
+        {step === items.length - 1 && (
+          <button type="submit" disabled={!isValid}>
+            제출
+          </button>
+        )}
       </div>
     </form>
   );
