@@ -3,6 +3,7 @@ import { useRouter } from 'next/navigation';
 import { useDialogStore } from '@/store/dialogState';
 import { authenticate } from '@/util/actions';
 import Input from '../common/input';
+import { isEmail, isNotEmpty } from '@/util/validation';
 
 export default function AuthForm() {
   const [enteredValues, setEnteredValues] = useState({
@@ -12,6 +13,8 @@ export default function AuthForm() {
   const [errorMessage, setErrorMessage] = useState<string | null>(null);
   const router = useRouter();
   const { close } = useDialogStore();
+
+  const isValid = isNotEmpty(enteredValues.email) && isEmail(enteredValues.email) && isNotEmpty(enteredValues.password);
 
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setEnteredValues((prev) => ({ ...prev, [e.target.name]: e.target.value }));
@@ -64,7 +67,9 @@ export default function AuthForm() {
         <button type="button" onClick={handleCancel}>
           취소
         </button>
-        <button className="ml-10">확인</button>
+        <button className="ml-10" disabled={!isValid}>
+          확인
+        </button>
       </div>
     </form>
   );
