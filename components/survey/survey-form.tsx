@@ -1,7 +1,7 @@
 'use client';
 
 import { useEffect } from 'react';
-import { useRecoilState } from 'recoil';
+import { useRecoilState, useRecoilValue } from 'recoil';
 import { useRouter } from 'next/navigation';
 import { useDialogStore } from '@/store/dialogState';
 import { userState } from '@/store/userState';
@@ -11,16 +11,17 @@ import MultiStepForm from '../form/multi-step-form';
 import RadioGroup from '../form/radio-group';
 import CheckboxGroup from '../form/checkbox-group';
 import SubjectiveInput from '../form/subjective-input';
+import AuthForm from '../dashboard/auth-form';
 
 interface Props {
   questions: Question[];
 }
 
 export default function SurveyForm({ questions }: Props) {
-  const [user, setUser] = useRecoilState(userState);
+  const user = useRecoilValue(userState);
   const [formValues, setFormValues] = useRecoilState(formState);
   const router = useRouter();
-  const { alert } = useDialogStore();
+  const { alert, prompt } = useDialogStore();
 
   useEffect(() => {
     if (!user) {
@@ -46,7 +47,10 @@ export default function SurveyForm({ questions }: Props) {
 
     const request = window.indexedDB.open('appDB');
     request.onerror = () => {
-      window.alert('indexed DB 오류');
+      alert({
+        title: 'indexedDB 오류',
+        description: '예기치 못한 오류가 발생했습니다. 잠시 후 다시 시도해주세요',
+      });
     };
 
     request.onsuccess = () => {
@@ -54,14 +58,10 @@ export default function SurveyForm({ questions }: Props) {
       const transaction = db.transaction(['survey'], 'readwrite');
 
       transaction.oncomplete = () => {
-        alert({
+        setFormValues({});
+        prompt({
           title: '제출 완료',
-          description: '설문 내용을 성공적으로 제출했습니다.',
-          onClose: () => {
-            setUser(null);
-            setFormValues({});
-            router.replace('/');
-          },
+          children: <AuthForm />,
         });
       };
 

@@ -40,6 +40,7 @@ export default function UserForm() {
         </header>
 
         <Input
+          type="text"
           label=""
           id="team"
           name="team"
@@ -49,6 +50,7 @@ export default function UserForm() {
         />
 
         <Input
+          type="text"
           label=""
           id="name"
           name="name"

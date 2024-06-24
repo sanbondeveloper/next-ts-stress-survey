@@ -5,7 +5,6 @@ export const dialogState = atom<Dialog>({
   key: 'dialogState',
   default: {
     title: '',
-    description: '',
     open: false,
   },
 });
@@ -14,37 +13,34 @@ export const useDialogStore = () => {
   const [state, setState] = useRecoilState(dialogState);
 
   const close = () => {
-    setState({ ...state, open: false, title: '', description: '' });
+    setState({ open: false, title: '' });
     state.onClose?.();
   };
 
   const setAttributes = ({
     title,
     description,
+    children,
     onClose,
   }: {
     title: string;
-    description: string;
+    description?: string;
+    children?: React.ReactNode;
     onClose?: () => void;
   }) => {
-    setState({ ...state, open: true, title, description, onClose });
-  };
-
-  const confirm = (title: string, description = '') => {
-    // setAttributes(title, description);
+    setState({ ...state, open: true, title, description, children, onClose });
   };
 
   const alert = ({ title, description, onClose }: { title: string; description: string; onClose?: () => void }) => {
     setAttributes({ title, description, onClose });
   };
 
-  const prompt = (title: string, description = '') => {
-    // setAttributes(title, description);
+  const prompt = ({ title, children }: { title: string; children: React.ReactNode }) => {
+    setAttributes({ title, children });
   };
 
   return {
     state,
-    confirm,
     alert,
     prompt,
     close,
