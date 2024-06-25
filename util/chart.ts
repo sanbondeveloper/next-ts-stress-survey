@@ -10,6 +10,7 @@ export function generateOptions(title: string) {
         text: title,
       },
     },
+    maxBarThickness: '60',
   };
 }
 
