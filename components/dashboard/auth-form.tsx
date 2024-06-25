@@ -29,10 +29,11 @@ export default function AuthForm() {
     e.preventDefault();
 
     setErrorMessage(null);
-    const isSuccess = await authenticate({ email: 'test@test.com', password: '1234' });
+    const isSuccess = await authenticate({ email: enteredValues.email, password: enteredValues.password });
 
     if (!isSuccess) {
-      return setErrorMessage('인증에 실패했습니다.');
+      setErrorMessage('인증에 실패했습니다.');
+      return;
     }
 
     close();
