@@ -25,13 +25,24 @@ export default function MultiStepForm<T>({ items, keyFn, validationFn, onSubmit,
   };
 
   const handleNext = () => {
-    if (step === items.length - 1) return;
+    if (step === items.length - 1 || !isValid) return;
 
     setStep((prev) => prev + 1);
   };
 
+  const handleKeyDown = (e: React.KeyboardEvent) => {
+    if (e.key === 'Tab') {
+      e.preventDefault();
+      if (e.shiftKey) {
+        handlePrev();
+      } else {
+        handleNext();
+      }
+    }
+  };
+
   return (
-    <form className="w-full px-2" onSubmit={onSubmit}>
+    <form className="w-full px-2" onSubmit={onSubmit} onKeyDown={handleKeyDown}>
       <div className="w-full overflow-hidden">
         <div className="flex w-full" style={containerStyle}>
           {items.map((item) => (
