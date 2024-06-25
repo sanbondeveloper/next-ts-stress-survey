@@ -11,6 +11,20 @@
 
 ### 실행 방법
 
+- `.env` 파일 생성
+
+```
+DATABASE_URL="file:./dev.db"
+SECRET_KEY=YOUR_SECRET_KEY
+```
+
+- 로그인 계정
+
+  - email: test@test.com
+  - password: 1234
+
+- 실행 명령어
+
 ```
 npm run dev
 npm run start
@@ -97,22 +111,24 @@ npm run start
   - 트랜잭션(transaction)은 데이터베이스 관리 시스템에서 데이터 조작 작업을 한 단위로 묶어 실행하는 것을 의미합니다. 트랜잭션은 일련의 데이터베이스 작업이 모두 성공적으로 완료되거나 모두 실패하도록 보장하는 논리적인 작업 단위입니다. 트랜잭션이 성공적으로 완료되면 모든 변경 사항이 데이터베이스에 커밋되고, 실패하면 모든 변경 사항이 롤백되어 데이터베이스는 트랜잭션이 시작되기 전의 상태로 돌아갑니다.
 - 폼 제출 후 사용자가 입력한 값을 초기화하지 않아 새로고침 없이 다시 설문조사를 실행할 때 기존 데이터가 남아있는 문제가 발생했습니다.
 
+### Dialog 구현
+
+설문조사 페이지에서 폼 제출 시 로그인 Dialog가 화면에 보여집니다.
+
+- `<Dialog />`를 Root Layout에서 렌더링했습니다.
+  - 애플리케이션 전역에서 사용되기에 모든 경로에 적용되는 Root Layout에 렌더링했습니다.
+- Dialog의 제목, 설명, 노출 여부 등 상태를 Recoil로 관리합니다.
+  - Dialog를 화면에 표시하고 싶을 때 Dialog의 상태를 변경시킵니다.
+
 ### 대시보드 페이지 진입 인증
 
-- 다이얼로그 구현
-- prisma와 sqlite를 통합하여 데이터베이스 관리
-- 인증 성공시 쿠키에 accessToken 발급 흉내내기
-
-### 차트
+- prisma와 sqlite를 통합하여 데이터베이스 구축했습니다.
+- Server Actions을 통해 로그인 요청을 수행합니다.
+  - Server Actions은 서버에서 실행되는 비동기 함수로 서버측 코드를 작성할 수 있습니다.
+- 인증 성공시 쿠키에 accessToken 발급하고 대시보드 페이지 진입시 accessToken을 verify 합니다.
+  - jsonwebtoken 라이브러리를 사용하여 accessToken 발급하고 verify 했습니다.
 
 ### 반응형 디자인
-
-### 저장
-
-- indexed DB, 왜?
-- 트랜잭션이란
-- 다이얼로그
-- ORM
 
 ## 할 일
 
