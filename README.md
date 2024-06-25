@@ -130,6 +130,22 @@ npm run start
 
 ### 반응형 디자인
 
+- 사용자 정보 입력 페이지
+
+![1](https://github.com/sanbondeveloper/next-ts-stress-survey/assets/146537655/826a1113-2f1d-4ede-bc46-3f53bea8e998)
+
+- 설문조사 페이지
+
+![2](https://github.com/sanbondeveloper/next-ts-stress-survey/assets/146537655/269c4ef5-d80c-4028-b9e6-8c81595a2a28)
+
+- Dialog
+
+![3](https://github.com/sanbondeveloper/next-ts-stress-survey/assets/146537655/77e82794-97b3-4794-802a-be8aba9eb281)
+
+- 대시보드 페이지
+
+![4](https://github.com/sanbondeveloper/next-ts-stress-survey/assets/146537655/dc8fff2c-1f47-45c6-9c7e-f96e7325d81f)
+
 ## 할 일
 
 ### 기본 요구사항
