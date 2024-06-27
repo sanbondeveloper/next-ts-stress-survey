@@ -14,9 +14,9 @@ export default function MultiStepForm<T>({ items, keyFn, validationFn, onSubmit,
   const [step, setStep] = useState(0);
   const isValid = validationFn(items[step], step);
 
-  const containerStyle = {
-    transform: `translateX(-${step * 100}%)`,
-  };
+  const itemStyle = (index: number) => ({
+    display: step === index ? 'block' : 'none',
+  });
 
   const handlePrev = () => {
     if (step === 0) return;
@@ -30,23 +30,12 @@ export default function MultiStepForm<T>({ items, keyFn, validationFn, onSubmit,
     setStep((prev) => prev + 1);
   };
 
-  const handleKeyDown = (e: React.KeyboardEvent) => {
-    if (e.key === 'Tab') {
-      e.preventDefault();
-      if (e.shiftKey) {
-        handlePrev();
-      } else {
-        handleNext();
-      }
-    }
-  };
-
   return (
-    <form className="w-full px-2" onSubmit={onSubmit} onKeyDown={handleKeyDown}>
+    <form className="w-full px-2" onSubmit={onSubmit}>
       <div className="w-full overflow-hidden">
-        <div className="flex w-full" style={containerStyle}>
-          {items.map((item) => (
-            <div className="w-full flex-shrink-0 p-4" key={keyFn(item)}>
+        <div className="flex w-full">
+          {items.map((item, index) => (
+            <div key={keyFn(item)} className="w-full flex-shrink-0 p-4" style={itemStyle(index)}>
               {children(item)}
             </div>
           ))}
