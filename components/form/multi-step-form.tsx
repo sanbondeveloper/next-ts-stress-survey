@@ -41,10 +41,13 @@ export default function MultiStepForm<T>({ items, keyFn, validationFn, onSubmit,
           ))}
         </div>
       </div>
-      <div className="flex w-full justify-between p-4">
+      <div className="mt-10 flex w-full justify-between p-4">
         <button type="button" onClick={handlePrev} disabled={step === 0}>
           이전
         </button>
+        <div className="flex items-center justify-center text-lg font-bold text-white">
+          {step + 1} / {items.length}
+        </div>
         {step !== items.length - 1 && (
           <button type="button" onClick={handleNext} disabled={!isValid}>
             다음

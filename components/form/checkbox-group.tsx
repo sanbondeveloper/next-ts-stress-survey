@@ -30,7 +30,7 @@ export default function CheckboxGroup({ question }: Props) {
   };
 
   return (
-    <fieldset className="mb-10 w-full">
+    <fieldset className="h-[250px] w-full">
       <legend className="mb-7 text-xl font-bold">{title}</legend>
 
       {question?.options?.map(({ label, score }, index) => (

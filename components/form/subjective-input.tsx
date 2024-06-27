@@ -23,9 +23,9 @@ export default function SubjectiveInput({ question }: Props) {
   };
 
   return (
-    <>
+    <div className="h-[250px]">
       <div className="mb-7 text-xl font-bold">{title}</div>
       <input type="text" placeholder="숫자를 입력하세요" value={inputValue} onChange={handleChange} />
-    </>
+    </div>
   );
 }
