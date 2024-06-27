@@ -23,7 +23,7 @@ export default function DashBoard() {
     }
   });
 
-  const labels = Object.keys(counter);
+  const labels = Object.keys(counter).map((label) => (label.length > 6 ? label.slice(0, 6) + '...' : label));
   const totals = Object.values(counter).map(({ total }) => total);
   const averages = Object.values(counter).map(({ total, count }) => total / count);
   const stdDevs = Object.values(counter).map(({ total, count, data }) => {
